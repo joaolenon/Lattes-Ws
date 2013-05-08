@@ -1,9 +1,9 @@
 {
 	"name": "schoolnet-crawler",
-	"description": "A crawler for retrieving data from Uniararas schoolnet system"
+	"description": "A crawler for retrieving data from Uniararas schoolnet system",
 	"autoload": {
 		"psr-0": { "Schoolnet": "src/" }
-	}
+	},
 
 	"require": {
 		"php": ">=5.3.0",
