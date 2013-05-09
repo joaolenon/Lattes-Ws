@@ -2,7 +2,7 @@
 
 namespace Schoolnet;
 
-use Silex\Application SilexApp;
+use Silex\Application as SilexApp;
 
 class Application
 {
@@ -11,6 +11,8 @@ class Application
 		$app = new SilexApp();
 
 		$this->configRoutes($app);
+
+		$app->run();
 	}
 
 	public function configRoutes($app)
@@ -19,7 +21,7 @@ class Application
 		$routes = json_decode($configFile);
 
 		foreach ($routes as $route) {
-			$app->get($route->path, $route->target);
+		 	$app->get($route->path, $route->target);
 		}
 	}
 }
