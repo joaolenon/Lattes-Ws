@@ -1,16 +1,16 @@
 [
 	{
 		"path": "/user/{$id}/auth",
-		"target": "Schoolnet\\Routes\\Auth"
+		"target": "Schoolnet\\Routes\\Auth::execute"
 	},
 
 	{
 		"path": "/user/{$id}/points",
-		"target": "Schoolnet\\Routes\\Points"
+		"target": "Schoolnet\\Routes\\Points::execute"
 	},
 
 	{
 		"path": "/user/{$id}/frequency",
-		"target": "Schoolnet\\Routes\\Frequency"
+		"target": "Schoolnet\\Routes\\Frequency::execute"
 	}
 ]
