@@ -1,0 +1,16 @@
+[
+	{
+		"path": "/user/{$id}/auth",
+		"target": "Schoolnet\\Routes\\Auth"
+	},
+
+	{
+		"path": "/user/{$id}/points",
+		"target": "Schoolnet\\Routes\\Points"
+	},
+
+	{
+		"path": "/user/{$id}/frequency",
+		"target": "Schoolnet\\Routes\\Frequency"
+	}
+]
