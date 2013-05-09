@@ -1,15 +1,18 @@
 [
 	{
+		"method": "post",
 		"path": "/user/{$id}/auth",
 		"target": "Schoolnet\\Routes\\Auth::execute"
 	},
 
 	{
+		"method": "get",
 		"path": "/user/{$id}/points",
 		"target": "Schoolnet\\Routes\\Points::execute"
 	},
 
 	{
+		"method": "get",
 		"path": "/user/{$id}/frequency",
 		"target": "Schoolnet\\Routes\\Frequency::execute"
 	}

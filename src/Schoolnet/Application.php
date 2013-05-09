@@ -21,7 +21,8 @@ class Application
 		$routes = json_decode($configFile);
 
 		foreach ($routes as $route) {
-		 	$app->get($route->path, $route->target);
+			$method = $route->method;
+		 	$app->$method($route->path, $route->target);
 		}
 	}
 }
