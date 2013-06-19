@@ -1,19 +1,19 @@
 [
 	{
-		"method": "post",
-		"path": "/user/{$id}/auth",
-		"target": "Schoolnet\\Routes\\Auth::execute"
+		"method": "get",
+		"path": "/courses/{course}",
+		"target": "Lattes\\Routes\\Course\\All::execute"
 	},
 
 	{
 		"method": "get",
-		"path": "/user/{$id}/points",
-		"target": "Schoolnet\\Routes\\Points::execute"
+		"path": "/courses/{course}/teachers",
+		"target": "Lattes\\Routes\\Teacher\\All::execute"
 	},
 
 	{
 		"method": "get",
-		"path": "/user/{$id}/frequency",
-		"target": "Schoolnet\\Routes\\Frequency::execute"
+		"path": "/courses/{course}/teachers/{teacher}",
+		"target": "Lattes\\Routes\\Teacher::execute"
 	}
 ]
