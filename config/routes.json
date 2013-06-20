@@ -1,19 +1,19 @@
 [
 	{
 		"method": "get",
-		"path": "/courses/{course}",
-		"target": "Lattes\\Routes\\Course\\All::execute"
+		"path": "/courses",
+		"target": "Lattes\\Routes\\Course\\All"
 	},
 
 	{
 		"method": "get",
-		"path": "/courses/{course}/teachers",
-		"target": "Lattes\\Routes\\Teacher\\All::execute"
+		"path": "/courses/*/teachers",
+		"target": "Lattes\\Routes\\Teacher\\All"
 	},
 
 	{
 		"method": "get",
-		"path": "/courses/{course}/teachers/{teacher}",
+		"path": "/courses/*/teachers/*",
 		"target": "Lattes\\Routes\\Teacher::execute"
 	}
 ]

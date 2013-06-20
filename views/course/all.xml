@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<courses>
+    {% for key,course in courses %}
+        <course>
+            <slug>{{course.slug}}</slug>
+            <name>{{course.name}}</name>
+        </course>
+    {% endfor %}
+</courses>

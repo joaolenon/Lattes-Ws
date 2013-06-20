@@ -7,8 +7,9 @@
 
 	"require": {
 		"php": ">=5.3.0",
-		"silex/silex": "*",
-		"fabpot/goutte": "*"
+		"respect/rest": "*",
+		"fabpot/goutte": "*",
+		"twig/twig": "*"
 	},
 
 	"require-dev": {

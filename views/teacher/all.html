@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Lista de Publicações</h1>
+
+<ul>
+    {% for teacher in teachers %}
+        <li>
+            {{teacher.name}}
+            <ul>
+                {% for publication in teacher.publications %}
+                    <li><b>{{publication.title}}</b> - {{publication.date}}</li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
