@@ -1,0 +1,6 @@
+web1:
+    name: blog
+    document_root: public
+    php_version: 5.4.14
+    after_build:
+        - "make install"
