@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "psr-0": { "Lattes": "src" }
+    },
+
+    "require": {
+        "respect/relational": "*"
+    },
+    
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    }
+}
