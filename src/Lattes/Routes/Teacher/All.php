@@ -2,31 +2,25 @@
 namespace Lattes\Routes\Teacher;
 
 use Respect\Rest\Routable;
+use Respect\Relational\Mapper;
 
 class All implements Routable
 {
-    public function get($course)
+    protected $db;
+
+    public function __construct(Mapper $db)
     {
-        $data = array('view' => 'teacher/all');
+        $this->db = $db;
+    }
 
-        $courses = array(
-            'sistemas-informacao' => array(
-                'rogerio-cardoso' => array(
-                    'name' => 'Rogério Cardoso',
-                    'publications' => array(
-                        array('title' => 'Aplicação de Ferramentas da Produção Enxuta na Gestão de Projetos de EAD', 'date' => 2010),
-                        array('title' => 'Planejamento: Capacitação de Docentes para Atuarem em Disciplinas Semi-Presenciais', 'date' => 2008)
-                    )
-                ),
-            ),
-        );
+    public function get()
+    {   
+        $mapper = $this->db;
+        $lattes  = filter_input(\INPUT_GET, 'lattes', \FILTER_SANITIZE_STRING);
 
-        if (!array_key_exists($course, $courses)) {
-            throw new \InvalidArgumentException("Course not found.");
-        }
+        if ($lattes)
+            return $mapper->teacher(array('lattes' => $lattes))->fetch();
 
-        $data['teachers'] = $courses[$course];
-
-        return $data;
+        return $mapper->teacher->fetchAll();
     }
 }
