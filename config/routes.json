@@ -1,19 +1,25 @@
 [
 	{
 		"method": "get",
-		"path": "/courses",
-		"target": "Lattes\\Routes\\Course\\All"
-	},
-
-	{
-		"method": "get",
-		"path": "/courses/*/teachers",
+		"path": "/teachers",
 		"target": "Lattes\\Routes\\Teacher\\All"
 	},
 
 	{
 		"method": "get",
-		"path": "/courses/*/teachers/*",
-		"target": "Lattes\\Routes\\Teacher::execute"
+		"path": "/teachers/*",
+		"target": "Lattes\\Routes\\Teacher"
+	},
+
+	{
+		"method": "get",
+		"path": "/teachers/*/educational",
+		"target": "Lattes\\Routes\\Teacher\\Educational"
+	},
+
+	{
+		"method": "get",
+		"path": "/teachers/*/productions",
+		"target": "Lattes\\Routes\\Teacher\\Production"
 	}
 ]
