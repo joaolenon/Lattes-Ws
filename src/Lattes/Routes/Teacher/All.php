@@ -18,9 +18,10 @@ class All implements Routable
         $mapper = $this->db;
         $lattes  = filter_input(\INPUT_GET, 'lattes', \FILTER_SANITIZE_STRING);
 
-        if ($lattes)
+        if ($lattes) {
             return $mapper->teacher(array('lattes' => $lattes))->fetch();
-
+        }
+        
         return $mapper->teacher->fetchAll();
     }
 }
