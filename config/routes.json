@@ -13,6 +13,12 @@
 
 	{
 		"method": "get",
+		"path": "/users/*/professional",
+		"target": "Lattes\\Routes\\User\\Professional"
+	},
+
+	{
+		"method": "get",
 		"path": "/users/*/educational",
 		"target": "Lattes\\Routes\\User\\Educational"
 	},
