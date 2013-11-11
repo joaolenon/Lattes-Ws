@@ -1,5 +1,5 @@
 <?php
-namespace Lattes\Routes\Teacher;
+namespace Lattes\Routes\User;
 
 use Respect\Rest\Routable;
 use Respect\Relational\Mapper;
@@ -19,9 +19,9 @@ class All implements Routable
         $lattes  = filter_input(\INPUT_GET, 'lattes', \FILTER_SANITIZE_STRING);
 
         if ($lattes) {
-            return $mapper->teacher(array('lattes' => $lattes))->fetch();
+            return $mapper->user(array('lattes' => $lattes))->fetch();
         }
         
-        return $mapper->teacher->fetchAll();
+        return $mapper->user->fetchAll();
     }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace Lattes\Routes\Teacher;
+namespace Lattes\Routes\User;
 
 use Respect\Rest\Routable;
 use Respect\Relational\Mapper;
@@ -17,6 +17,6 @@ class Educational implements Routable
     {   
         $mapper = $this->db;
         
-        return $mapper->titulation->teacher[$id]->fetchAll();
+        return $mapper->titulation->user[$id]->fetchAll();
     }
 }

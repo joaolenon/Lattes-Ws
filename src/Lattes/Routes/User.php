@@ -4,7 +4,7 @@ namespace Lattes\Routes;
 use Respect\Rest\Routable;
 use Respect\Relational\Mapper;
 
-class Teacher implements Routable
+class User implements Routable
 {
     protected $db;
 
@@ -16,6 +16,6 @@ class Teacher implements Routable
     public function get($id)
     {
         $mapper = $this->db;
-        return $mapper->teacher(array('id' => $id))->fetch();
+        return $mapper->user[$id]->fetch();
     }
 }
