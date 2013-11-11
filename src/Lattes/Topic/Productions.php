@@ -17,7 +17,7 @@ class Productions extends AbstractTopic
 
         if ('layout-cell-pad-5' == $node->getAttribute('class')) {
             preg_match('/[0-9]{4}/', $node->nodeValue, $years);
-            $title = preg_replace(array('/.*( \. )/', '/\.\s[0-9]{4}.*/'), array('', ''), $node->nodeValue);
+            $title = preg_replace(array('/.*( \. )/', '/\.\s[0-9]{4}.*/'), array('', ''), trim($node->nodeValue));
 
             $this->data[] = array(trim($title), end($years), $this->type);
         }
@@ -32,7 +32,10 @@ class Productions extends AbstractTopic
             case 'Resumos expandidos publicados em anais de congressos':
             case 'Resumos publicados em anais de congressos':
             case 'Apresentações de Trabalho':
+            case 'Outras produções bibliográficas':
                 return 'Congresso';
+            case 'Livros publicados/organizados ou edições':
+                return 'Livros';
             case 'Capítulos de livros publicados':
                 return 'Capítulos de livros';
             case 'Textos em jornais de notícias/revistas':
