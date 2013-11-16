@@ -16,6 +16,7 @@ class User implements Routable
     public function get($id)
     {
         $mapper = $this->db;
+        
         return $mapper->user[$id]->fetch();
     }
 }

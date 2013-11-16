@@ -43,10 +43,7 @@ class Application
 			$method = $route->method;
 		 	$this->router->$method($route->path, $route->target, array($this->db()))
 		 		->accept(array(
-			 		'application/json' => function($data) {
-			 			echo json_encode($data);
-			 			return;
-			 		},
+			 		'application/json' => 'json_encode', 
 		 		));
 		}
 	}

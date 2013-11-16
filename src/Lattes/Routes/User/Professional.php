@@ -3,6 +3,7 @@ namespace Lattes\Routes\User;
 
 use Respect\Rest\Routable;
 use Respect\Relational\Mapper;
+use Respect\Relational\Sql;
 
 class Professional implements Routable
 {
@@ -16,7 +17,10 @@ class Professional implements Routable
     public function get($id)
     {   
         $mapper = $this->db;
-        
-        return $mapper->professional->user[$id]->fetchAll();
+        $professionalCollection = $mapper->professional->user[$id]->fetchAll(
+            Sql::orderBy('end DESC, start DESC')
+        );
+
+        return $professionalCollection;
     }
 }

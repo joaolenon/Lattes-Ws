@@ -3,6 +3,8 @@
 define("ROOT_PATH", realpath('../'));
 define("DS", DIRECTORY_SEPARATOR);
 
+header('Access-Control-Allow-Origin: *');
+
 include ROOT_PATH.DS.'vendor'.DS.'autoload.php';
 
 use Lattes\Application;

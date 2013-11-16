@@ -17,14 +17,14 @@ class Production implements Routable
     {   
         $mapper = $this->db;
         $filter = array('user_id' => $id);
-        $start  = filter_input(INPUT_GET, 'start', FILTER_VALIDATE_INT);
+        $begin  = filter_input(INPUT_GET, 'begin', FILTER_VALIDATE_INT);
         $end    = filter_input(INPUT_GET, 'end', FILTER_VALIDATE_INT);
 
-        if ($start && $end) {
-            $filter['year >='] = $start;
+        if ($begin && $end) {
+            $filter['year >='] = $begin;
             $filter[] = array('year <=' => $end);
         }
 
-        return $mapper->production($filter)->fetchAll();
+        return $mapper->production($filter)->user->fetchAll();
     }
 }
