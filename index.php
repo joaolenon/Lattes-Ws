@@ -7,6 +7,11 @@ use Respect\Relational\Sql;
 use Lattes\Crawler;
 
 try {
+    $sql = 'TRUNCATE production;';
+    $sql .= 'TRUNCATE titulation;';
+    $sql .= 'TRUNCATE professional;';
+    $pdo->exec($sql);
+
     $mapper     = new Mapper($pdo);
     $users   = $mapper->user->fetchAll();
 
@@ -19,7 +24,7 @@ try {
         foreach ($educationalCollection as $educational) {
             $educational = (object) $educational;
 
-            if (is_int($educational->end))
+            if ($educational->end == 0)
                 unset($educational->end);
 
             $educational->user_id = $user->id;
@@ -33,8 +38,8 @@ try {
         foreach ($professionalCollection as $professional) {
             $professional = (object) $professional;
 
-            if (is_int($professional->end))
-                unset($professional->end);
+            if ($professional->end == 0)
+                $professional->end = 9999;
 
            $professional->user_id = $user->id;
 
@@ -42,7 +47,7 @@ try {
             $mapper->flush();
         }
 
-        $educational = $mapper->titulation(array('end !=' => '', 'user_id' => $user->id))
+        $educational = $mapper->titulation(array('end IS NOT NULL', 'user_id' => $user->id))
             ->fetch(Sql::orderBy('titulation.weight')->desc());
 
         $productionsCollection = $crawler->productions->data;

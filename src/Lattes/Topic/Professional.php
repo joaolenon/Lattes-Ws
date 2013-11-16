@@ -6,6 +6,7 @@ class Professional extends AbstractTopic
     protected $name  = 'professional';
     protected $keys  = array('workplace','start', 'end', 'link');
     protected $topic = 'AtuacaoProfissional';
+    public $experience = 0;
     protected $loop  = 0;
     protected $index = 0;
 
@@ -15,7 +16,7 @@ class Professional extends AbstractTopic
         $index =& $this->index;
 
         if ($node->getAttribute('class') == 'inst_back') {
-            $this->data[++$loop][0] = trim($node->nodeValue);
+            $this->data[$loop][0] = trim($node->nodeValue);
         }
 
         if (strstr($node->getAttribute('class'), 'layout-cell-pad-5')) {
@@ -24,13 +25,18 @@ class Professional extends AbstractTopic
             }
 
             if ($index == 2) {
-                list($start, $end) = array_pad(explode('-', $node->nodeValue), 2, null); 
-                $this->data[$loop][$index++] = trim($start);
-                $this->data[$loop][$index] = trim($end);        
+                list($start, $end) = array_pad(explode('-', trim($node->nodeValue)), 2, null); 
+                $this->data[$loop][$index++] = (int) $start;
+                $this->data[$loop][$index] = (int) $end; 
             }
 
             if ($index == 4) {
-                $this->data[$loop][$index] = trim($node->nodeValue);
+                if (!isset($this->data[$loop][0])) {
+                    $this->data[$loop][0] = $this->data[$loop-1][0];
+                }
+                ksort($this->data[$loop]);
+                
+                $this->data[$loop++][$index] = trim($node->nodeValue);
             }
 
             $index++;
