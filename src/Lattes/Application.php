@@ -37,13 +37,16 @@ class Application
 
 	private function configRoutes()
 	{
-		$routes = $this->parseJsonConfig('routes');
+		$routes 	= $this->parseJsonConfig('routes');
 
 		foreach ($routes as $route) {
 			$method = $route->method;
 		 	$this->router->$method($route->path, $route->target, array($this->db()))
 		 		->accept(array(
-			 		'application/json' => 'json_encode', 
+		 			'application/xml' => new \Lattes\Routines\Xml,
+			 		'application/json' => function($data) {
+			 			echo json_encode($data);
+			 		}
 		 		));
 		}
 	}
