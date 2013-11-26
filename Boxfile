@@ -4,6 +4,7 @@ web1:
     php_version: 5.4.14
     php_extensions:
         - pdo_mysql
+        - zip
     after_build:
         - "make install"
 
