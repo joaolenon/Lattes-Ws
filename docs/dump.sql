@@ -12,13 +12,12 @@ CREATE TABLE IF NOT EXISTS `lattes`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(250) NOT NULL,
   `lattes` VARCHAR(100) NOT NULL,
-  `experience` INT NULL,
   `max_titulation` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 LOCK TABLES `user` WRITE;
-INSERT INTO `user` VALUES (1,'Camilo Cesar Perucci','http://lattes.cnpq.br/5812687200309236',NULL,NULL),(2,'Carlos Eduardo Liasch','http://lattes.cnpq.br/1155348824161559',NULL,NULL),(3,'Eduardo de Brito','http://lattes.cnpq.br/3929942929482246',NULL,NULL),(4,'Eric Augusto Paixão de Querioz','http://lattes.cnpq.br/1641964252508999',NULL,NULL),(5,'Erivelton Rodrigues Nunes','http://lattes.cnpq.br/6503269153478973',NULL,NULL),(6,'Fabiano Rodrigo da Silva Santos','http://lattes.cnpq.br/8841840830171267',NULL,NULL),(7,'Flávio Rubens Massaro Junior','http://lattes.cnpq.br/6581012116833368',NULL,NULL),(8,'Ivan José Lautenschleguer ','http://lattes.cnpq.br/0537601054260366',NULL,NULL),(9,'Lilian Saldanha Marroni','http://lattes.cnpq.br/4995205101828752',NULL,NULL),(10,'Marcelo Carlos Barbeli','http://lattes.cnpq.br/9182535209147578',NULL,NULL),(11,'Orlando Saraiva do Nascimento Junior','http://lattes.cnpq.br/5246678822563192',NULL,NULL),(12,'Pâmela Piovesan','http://lattes.cnpq.br/1376315663238484',NULL,NULL),(13,'Raphael Gava de Andrade','http://lattes.cnpq.br/1070291283812879',NULL,NULL),(14,'Renato Luciano Cagnin','http://lattes.cnpq.br/3864977515064821',NULL,NULL),(15,'Rogério Cardoso','http://lattes.cnpq.br/7580475626591643',NULL,NULL),(16,'Sergio Luis Antonello','http://lattes.cnpq.br/4034572067207920',NULL,NULL);
+INSERT INTO `user` VALUES (1,'Camilo Cesar Perucci','http://lattes.cnpq.br/5812687200309236',NULL),(2,'Carlos Eduardo Liasch','http://lattes.cnpq.br/1155348824161559',NULL),(3,'Eduardo de Brito','http://lattes.cnpq.br/3929942929482246',NULL),(4,'Eric Augusto Paixão de Querioz','http://lattes.cnpq.br/1641964252508999',NULL),(5,'Erivelton Rodrigues Nunes','http://lattes.cnpq.br/6503269153478973',NULL),(6,'Fabiano Rodrigo da Silva Santos','http://lattes.cnpq.br/8841840830171267',NULL),(7,'Flávio Rubens Massaro Junior','http://lattes.cnpq.br/6581012116833368',NULL),(8,'Ivan José Lautenschleguer ','http://lattes.cnpq.br/0537601054260366',NULL),(9,'Lilian Saldanha Marroni','http://lattes.cnpq.br/4995205101828752',NULL),(10,'Marcelo Carlos Barbeli','http://lattes.cnpq.br/9182535209147578',NULL),(11,'Orlando Saraiva do Nascimento Junior','http://lattes.cnpq.br/5246678822563192',NULL),(12,'Pâmela Piovesan','http://lattes.cnpq.br/1376315663238484',NULL),(13,'Raphael Gava de Andrade','http://lattes.cnpq.br/1070291283812879',NULL),(14,'Renato Luciano Cagnin','http://lattes.cnpq.br/3864977515064821',NULL),(15,'Rogério Cardoso','http://lattes.cnpq.br/7580475626591643',NULL),(16,'Sergio Luis Antonello','http://lattes.cnpq.br/4034572067207920',NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -34,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `lattes`.`titulation` (
   `end` YEAR NULL,
   `weight` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_titulation_user_idx` (`user_id` ASC),
+  INDEX `fk_titulation_teacher_idx` (`user_id` ASC),
   CONSTRAINT `fk_titulation_user`
     FOREIGN KEY (`user_id`)
     REFERENCES `lattes`.`user` (`id`)
@@ -53,25 +52,12 @@ CREATE TABLE IF NOT EXISTS `lattes`.`production` (
   `year` YEAR NULL,
   `type` ENUM('Periódicos', 'Congresso','Livros', 'Capítulos de livros') NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_production_user_idx` (`user_id` ASC),
+  INDEX `fk_production_teacher1_idx` (`user_id` ASC),
   CONSTRAINT `fk_production_user`
     FOREIGN KEY (`user_id`)
     REFERENCES `lattes`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `lattes`.`qualis`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lattes`.`qualis` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `isssn` VARCHAR(9) NOT NULL,
-  `title` VARCHAR(20) NOT NULL,
-  `extract` VARCHAR(2) NOT NULL,
-  `area` VARCHAR(30) NOT NULL,
-  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -83,10 +69,10 @@ CREATE TABLE IF NOT EXISTS `lattes`.`professional` (
   `user_id` INT NOT NULL,
   `workplace` VARCHAR(255) NOT NULL,
   `link` VARCHAR(255) NOT NULL,
-  `start` YEAR NOT NULL,
-  `end` YEAR NULL,
+  `start` INT NOT NULL,
+  `end` INT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_professional_user_idx` (`user_id` ASC),
+  INDEX `fk_professional_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_professional_user`
     FOREIGN KEY (`user_id`)
     REFERENCES `lattes`.`user` (`id`)
