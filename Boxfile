@@ -1,0 +1,12 @@
+web1:
+    name: ws-lattes
+    document_root: public/
+    php_version: 5.4.14
+    php_extensions:
+        - pdo_mysql
+    after_build:
+        - "make install"
+
+db1:
+    name: lattes
+    type: mysql
